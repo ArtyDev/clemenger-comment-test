@@ -4,6 +4,7 @@ namespace Clemenger\CommentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use \DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Comment
@@ -26,6 +27,7 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=45)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -33,6 +35,8 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=45)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
 
@@ -40,6 +44,7 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="comment", type="text")
+     * @Assert\NotBlank()
      */
     private $comment;
 
