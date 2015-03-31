@@ -46,4 +46,23 @@ class DefaultController extends Controller
             'comments' => $repo->findAll()
         ));
     }
+
+    /**
+     * Single comment view
+     *
+     * @param $commentId
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function showCommentAction($commentId)
+    {
+        $repo = $this->getDoctrine()
+            ->getRepository('ClemengerCommentBundle:Comment');
+        if (!$comment = $repo->find($commentId)){ // throw 404 if comment inexistant
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render('ClemengerCommentBundle:Comment:show.html.twig', array(
+            'comment' => $comment
+        ));
+    }
 }

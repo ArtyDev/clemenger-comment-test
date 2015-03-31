@@ -1,3 +1,7 @@
 clemenger_comment_homepage:
     path:     /
     defaults: { _controller: ClemengerCommentBundle:Default:index }
+
+clemenger_comment_show:
+    path:     /comment/{commentId}
+    defaults: { _controller: ClemengerCommentBundle:Default:showComment }
