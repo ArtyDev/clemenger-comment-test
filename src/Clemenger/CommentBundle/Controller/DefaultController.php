@@ -37,8 +37,13 @@ class DefaultController extends Controller
             $this->addFlash('success', 'Your message has been submitted!');
         }
 
+        // List the lasts comments
+        $repo = $this->getDoctrine()
+            ->getRepository('ClemengerCommentBundle:Comment');
+
         return $this->render('ClemengerCommentBundle:Default:index.html.twig', array(
             'form' => $form->createView(),
+            'comments' => $repo->findAll()
         ));
     }
 }

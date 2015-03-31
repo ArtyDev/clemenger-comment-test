@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 {# list comments #}
+    {% for comment in comments %}
+        <div class="comment">
+            {{ comment.name }}
+            {{ comment.date | date}}
+            {{ comment.comment }}
+        </div>
+    {% endfor %}
 {# display form #}
     {{ form_start(form) }}
     {{ form_widget(form) }}
