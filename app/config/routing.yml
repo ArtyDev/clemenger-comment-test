@@ -1,3 +1,7 @@
+clemenger_comment:
+    resource: "@ClemengerCommentBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

@@ -1,0 +1,3 @@
+clemenger_comment_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ClemengerCommentBundle:Default:index }
