@@ -1,11 +1,18 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 {% extends '::base.html.twig' %}
 {% block body %}
-    {# list comments #}
-    <div id="comment-list">
-        {% for comment in comments %}
-            {{ include('ClemengerCommentBundle:Comment:single.html.twig', { 'comment': comment }) }}
-        {% endfor %}
+    <div class="row">
+        <div class="col-md-6">
+            {# list comments #}
+            <div id="comment-list">
+                {% for comment in comments %}
+                    {{ include('ClemengerCommentBundle:Comment:single.html.twig', { 'comment': comment }) }}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-6">
+            {# display form #}
+            {{ form(form) }}
+        </div>
     </div>
-    {# display form #}
-    {{ form(form) }}
 {% endblock %}

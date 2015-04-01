@@ -5,8 +5,7 @@ $(document).ready(function () {
 
     // References the comment in the textarea on click on the link "ref" for each comment
     $(document).on('click', 'a.comment-ref', function(e){
-        var $commentId = $(this).parent().attr('id').replace('comment-', ''); // get the comment id
-        $('#clemenger_commentbundle_comment_comment').val($('#clemenger_commentbundle_comment_comment').val() + '#' + $commentId); // append it to the text area
+        $('#clemenger_commentbundle_comment_comment').val($('#clemenger_commentbundle_comment_comment').val() + $(this).attr('href')); // append the href to the text area
         $('#clemenger_commentbundle_comment_comment').focus(); // focus again
         e.preventDefault();
     });

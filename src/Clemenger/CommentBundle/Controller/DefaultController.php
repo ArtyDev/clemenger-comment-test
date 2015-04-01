@@ -50,7 +50,7 @@ class DefaultController extends Controller
 
         return $this->render('ClemengerCommentBundle:Default:index.html.twig', array(
             'form' => $form->createView(),
-            'comments' => $repo->findBy(array(), array('id' => 'DESC'), 3)
+            'comments' => $repo->findBy(array(), array('id' => 'DESC'))
         ));
     }
 

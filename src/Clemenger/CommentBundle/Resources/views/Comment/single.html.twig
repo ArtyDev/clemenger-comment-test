@@ -1,5 +1,22 @@
-<div class="comment" id="comment-{{ comment.id }}">
-    <img src="{{ gravatar(comment.email) }}" />
-    {{ comment.name }} on {{ comment.date | date }} <a href="#{{ comment.id }}" class="comment-ref">ref</a>
-    <p>{{ comment.comment | parse_comments_references | raw }}</p>
+<div class="comment" id="comment-{{ comment.id }}" xmlns="http://www.w3.org/1999/html">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="media">
+                <div class="media-left">
+                    <img src="{{ gravatar(comment.email) }}" alt="{{ comment.name }}">
+                </div>
+                <div class="media-body">
+                    <a href="#{{ comment.id }}" class="comment-ref pull-right btn btn-info btn-xs" role="button" title="Reference this comment">Ref.</a>
+                    <h2 class="panel-title">{{ comment.name }}</h2>
+                    <small>{{ comment.date | date }}</small>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel-body">
+            {{ comment.comment | parse_comments_references | raw }}
+        </div>
+    </div>
+
 </div>
