@@ -10,7 +10,7 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-    // Ajax
+    // Ajax form submission
     $("form[name='clemenger_commentbundle_comment']").submit(function (e) {
         // Retrieve data
         var $name = $("input[name='clemenger_commentbundle_comment[name]']");
