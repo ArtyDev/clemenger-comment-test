@@ -4,6 +4,6 @@
     <img src="{{ gravatar(comment.email) }}" />
     {{ comment.name }}
     {{ comment.date | date}}
-    {{ comment.comment }}
+    {{ comment.comment | parse_comments_references | raw }}
 </div>
 {% endblock %}
