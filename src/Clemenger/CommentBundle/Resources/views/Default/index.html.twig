@@ -1,9 +1,11 @@
 {% extends '::base.html.twig' %}
 {% block body %}
     {# list comments #}
-    {% for comment in comments %}
-        {{ include('ClemengerCommentBundle:Comment:single.html.twig', { 'comment': comment }) }}
-    {% endfor %}
+    <div id="comment-list">
+        {% for comment in comments %}
+            {{ include('ClemengerCommentBundle:Comment:single.html.twig', { 'comment': comment }) }}
+        {% endfor %}
+    </div>
     {# display form #}
     {{ form(form) }}
 {% endblock %}

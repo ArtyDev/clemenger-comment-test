@@ -20,14 +20,15 @@ class CommentType extends AbstractType
             ->add('comment')
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Clemenger\CommentBundle\Entity\Comment'
+            'data_class' => 'Clemenger\CommentBundle\Entity\Comment',
+            'csrf_protection' => false,
         ));
     }
 

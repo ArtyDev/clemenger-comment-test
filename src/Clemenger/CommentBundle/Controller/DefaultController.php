@@ -23,7 +23,7 @@ class DefaultController extends Controller
         $form = $this->createForm(new CommentType(), $comment);
         $form->add('save', 'submit', array('label' => 'Submit'));
 
-        // Let's handle the request!
+        // handle the request
         $form->handleRequest($request);
         // Validation
         if ($form->isValid()) {
@@ -32,6 +32,13 @@ class DefaultController extends Controller
 
             $em->persist($comment);
             $em->flush();
+
+            // If AJAX, return the newly created comment
+            if($request->isXmlHttpRequest()) {
+                return $this->render('ClemengerCommentBundle:Comment:single.html.twig', array(
+                    'comment' => $comment
+                ));
+            }
 
             // add flashbag
             $this->addFlash('success', 'Your message has been submitted!');
@@ -43,7 +50,7 @@ class DefaultController extends Controller
 
         return $this->render('ClemengerCommentBundle:Default:index.html.twig', array(
             'form' => $form->createView(),
-            'comments' => $repo->findBy(array(), array('id' => 'ASC' ))
+            'comments' => $repo->findBy(array(), array('id' => 'DESC'), 3)
         ));
     }
 
