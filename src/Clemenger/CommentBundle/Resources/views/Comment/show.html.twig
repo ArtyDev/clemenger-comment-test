@@ -1,9 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends '::base.html.twig' %}
 {% block body %}
-<div class="comment">
-    <img src="{{ gravatar(comment.email) }}" />
-    {{ comment.name }}
-    {{ comment.date | date}}
-    {{ comment.comment | parse_comments_references | raw }}
-</div>
+    {{ include('ClemengerCommentBundle:Comment:single.html.twig', { 'comment': comment }) }}
 {% endblock %}

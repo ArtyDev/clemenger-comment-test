@@ -1,0 +1,5 @@
+<div class="comment" id="comment-{{ comment.id }}">
+    <img src="{{ gravatar(comment.email) }}" />
+    {{ comment.name }} on {{ comment.date | date }} <a href="#{{ comment.id }}" class="comment-ref">ref</a>
+    <p>{{ comment.comment | parse_comments_references | raw }}</p>
+</div>
