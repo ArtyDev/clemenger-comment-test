@@ -7,7 +7,6 @@
  */
 
 namespace Clemenger\CommentBundle\Twig;
-use Symfony\Bundle\FrameworkBundle\Routing\Router;
 
 class CommentExtension extends \Twig_Extension
 {
