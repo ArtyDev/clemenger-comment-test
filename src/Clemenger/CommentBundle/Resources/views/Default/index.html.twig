@@ -3,8 +3,7 @@
 {% block body %}
     <div class="row">
         <div class="col-md-6">
-            {# list comments #}
-            <div id="comment-list">
+            <div class="media-list" id="comment-list">
                 {% for comment in comments %}
                     {{ include('ClemengerCommentBundle:Comment:single.html.twig', { 'comment': comment }) }}
                 {% endfor %}
@@ -12,7 +11,7 @@
         </div>
         <div class="col-md-6">
             {# display form #}
-            {{ form(form) }}
+            {{ form(form, {'attr': {'id': 'initial-form'}}) }}
         </div>
     </div>
 {% endblock %}

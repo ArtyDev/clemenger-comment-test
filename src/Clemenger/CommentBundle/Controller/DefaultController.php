@@ -15,8 +15,12 @@ class DefaultController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $parentId = null)
     {
+        // Comment Repository
+        $repo = $this->getDoctrine()
+            ->getRepository('ClemengerCommentBundle:Comment');
+
         // Create comment form
         $comment = new Comment();
 
@@ -27,6 +31,14 @@ class DefaultController extends Controller
         $form->handleRequest($request);
         // Validation
         if ($form->isValid()) {
+            // Add parent comment if is set
+            if(!is_null($parentId)) {
+                $parentComment = $repo->find($parentId);
+                if($parentComment) { // Fetch parent comment
+                    $comment->setParentComment($parentComment);
+                }
+            }
+
             // If validation passes, persist the comment
             $em = $this->getDoctrine()->getManager();
 
@@ -45,12 +57,9 @@ class DefaultController extends Controller
         }
 
         // List the lasts comments
-        $repo = $this->getDoctrine()
-            ->getRepository('ClemengerCommentBundle:Comment');
-
         return $this->render('ClemengerCommentBundle:Default:index.html.twig', array(
             'form' => $form->createView(),
-            'comments' => $repo->findBy(array(), array('id' => 'DESC'))
+            'comments' => $repo->findBy(array('parentComment'=>null), array('id' => 'DESC'))
         ));
     }
 

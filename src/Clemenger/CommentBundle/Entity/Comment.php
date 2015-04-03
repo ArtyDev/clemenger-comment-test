@@ -49,6 +49,17 @@ class Comment
     private $comment;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Comment", inversedBy="childrenComments")
+     * @ORM\JoinColumn(name="comment_parent_id", referencedColumnName="id")
+     **/
+    private $parentComment;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="parentComment")
+     **/
+    private $childrenComments;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
@@ -56,7 +67,8 @@ class Comment
     private $date;
 
     public function __construct(){
-        $this->date = new DateTime();
+        $this->date     = new DateTime();
+        $this->childrenComments = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -146,5 +158,38 @@ class Comment
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set parent comment
+     *
+     * @param Comment $comment
+     * @return Comment
+     */
+    public function setParentComment($comment)
+    {
+        $this->parentComment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get parent comment
+     *
+     * @return Comment
+     */
+    public function getParentComment()
+    {
+        return $this->parentComment;
+    }
+
+    /**
+     * Get children comments
+     *
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getChildrenComments()
+    {
+        return $this->childrenComments;
     }
 }
