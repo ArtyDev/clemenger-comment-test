@@ -29,8 +29,7 @@ $(document).ready(function () {
     });
 
     // Ajax form submission
-    $("form").submit(function (e) {
-
+    $(document).on('submit', 'form', function(e){
         // Get the form
         var $form = $(this);
 
